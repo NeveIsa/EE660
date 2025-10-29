@@ -1,0 +1,83 @@
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.2.2"></script><textarea>
+
+
+![](assets/p1.png)
+
+---
+
+Let the VC dimenstion of $H_i$ be $d_i$.
+$d = \underset{i}{\max} d_i$
+
+**Notation**: Let $A := \cup_i^k H_i$
+
+
+The growth function of a function class $H$ is the cardinality of length n bit-patterns $B(H,x_{1:n})$ realizable on a set of points $X_{1:n}$ by functions $h \in H$. It can atmost be $2^n$ when $n \leq VCdim(H)$ as each length n bit-patterns is realized by some member of $h \in H$ when it is restricted to the points $x_1,x_2,...,x_n$.
+
+From lecture notes, the growth function is also bounded above by $\#B(H,x_{1:n}) = G_{H_i}(n) \leq \sum_{j=0}^{d_i} \binom{n}{j} \leq  \sum_{j=0}^{d} \binom{n}{j}$.
+
+
+Given a set of points $x_{1:n}$ and  for all $n$, the number of bit-patterns realized by some member of $H_i$ is $\#B(H_i,x_{1:n}) \leq  \sum_{j=0}^{d_i} \binom{n}{j} \leq  \sum_{j=0}^{d} \binom{n}{j}$.
+
+The set of bit-patters $B(A,x_{1:n})$ realized by $A = \cup_i^k$ is the union of the bit-patterns that is realized by any of its subsets $H_i$.
+
+$$
+ B(A,x_{1:n}) = \cup_i^k B(H_i, x_{1:n})
+$$
+
+By union bound, 
+
+$$
+\#B(A,x_{1:n}) \leq \sum_i^k B(H_i, x_{1:n}) \leq \sum_i^k  \sum_{j=0}^{d_i} \binom{n}{j}
+$$
+
+$$
+\# B(A, x_{1:n}) \leq k  \sum_{j=0}^{d} \binom{n}{j}
+$$
+
+By proposition in lecture notes (also appendix D.1), 
+
+$$
+\# B(A, x_{1:n}) \leq k  \sum_{j=0}^{d} \binom{n}{j} \leq k \bigg(\frac{en}{d}\bigg)^d
+$$
+
+
+Let $m$ be the size of some set $x_{1:m}$ that can be shattered by $A$. $VCdim{A}$ is the largest such $m$.
+The below inequality holds only if there exists any $x_{1:m}$ that is shattered by $A$. 
+
+Then, $ 2^m = \# B(A,x_{1:m}) \leq k \big( \frac{en}{d}\big)^d$
+
+$$ 2^m \leq k \bigg( \frac{em}{d}\bigg)^d $$
+
+$$ m \ln2 \leq \ln k + d (\ln(em) - \ln{d} ) $$
+
+
+Assuming $d \geq 1$ and hence  $\ln d \geq 0$, we have
+
+$$ m \ln 2 \leq \ln k + d(\ln em) \hspace{0.5em} --- (1)$$
+
+From hint,  $2b \ln (2bc) \leq m  \implies  b \ln (cm) \leq m $.
+
+
+We want to show that for large $m$, $A$ cannot shatter $x_{1:m}$
+
+Set $2b = 2d$, $c = e$. Assume that we have a large $m$ such that $2b \ln(2bc) = 2d \ln (2de) \leq m$. In this large $m$ regime, we have $ d \ln (em) \leq m$.
+
+Hence, from (1)
+
+$$
+	m \ln 2 \leq \ln k  + d (\ln em) \leq \ln k + m
+$$
+
+$$
+	m (\ln 2 - 1) \leq \ln k $$
+$$
+	\implies m \leq \underbrace{0}_{c_0} d + \underbrace{\frac{1}{\ln 2 - 1}}_{c_1} \ln k 
+$$
+
+
+
+
+
+
+
+
